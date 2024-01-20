@@ -23,7 +23,7 @@ btn1.addEventListener("click", function(){
 	else {
 		tg.MainButton.setText("Вы выбрали урок 1!");
 		item = "1";
-		window.location.href = 'second_page.html';
+		window.location.href = 'lesson1.html';
 		tg.MainButton.show();
 	}
 });
