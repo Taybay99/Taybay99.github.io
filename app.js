@@ -21,8 +21,9 @@ btn1.addEventListener("click", function(){
 		tg.MainButton.hide();
 	}
 	else {
-		tg.MainButton.setText("Вы выбрали товар 1!");
+		tg.MainButton.setText("Вы выбрали урок 1!");
 		item = "1";
+		window.location.href = 'second_page.html';
 		tg.MainButton.show();
 	}
 });
