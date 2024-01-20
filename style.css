@@ -43,8 +43,8 @@ body {
 
 .usercard {
 	text-align: center;
+	
 }
-
 .container {
     display: flex;
     flex-direction: column;
@@ -113,16 +113,6 @@ body {
     overflow: auto;
     padding: 20px;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
