@@ -1,67 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<title>Document</title>
 </head>
 <body>
-    <div class="container">
-        <div class="select-container">
-            <label for="lessonSelect">Выбрать урок:</label>
-            <select id="lessonSelect" onchange="handleLessonSelect()">
-                <option value="1">Урок 1</option>
-                <option value="2">Урок 2</option>
-                <option value="3">Урок 3</option>
-                <!-- Добавьте остальные уроки по аналогии -->
-            </select>
-        </div>
-        <div class="inner">
-            <div class="item">
-                <img src="1.jpg" alt="" class="img">
-                <button class="btn" id="btn1">Урок - 1</button>
-            </div>
-            <div class="item">
-                <img src="2.jpg" alt="" class="img">
-                <button class="btn" id="btn2">Урок - 2</button>
-            </div>
-            <div class="item">
-                <img src="3.jpg" alt="" class="img">
-                <button class="btn" id="btn3">Урок - 3</button>
-            </div>
-            <div class="item">
-                <img src="4.jpg" alt="" class="img">
-                <button class="btn" id="btn4">Урок - 4</button>
-            </div>
-            <div class="item">
-                <img src="5.jpg" alt="" class="img">
-                <button class="btn" id="btn5">Урок - 5</button>
-            </div>
-            <div class="item">
-                <img src="6.jpg" alt="" class="img">
-                <button class="btn" id="btn6">Урок - 6</button>
-            </div>
-            <div class="item">
-                <img src="7.jpg" alt="" class="img">
-                <button class="btn" id="btn7">Урок - 7</button>
-            </div>
-            <div class="item">
-                <img src="8.jpg" alt="" class="img">
-                <button class="btn" id="btn8">Урок - 8</button>
-            </div>
-        </div>
-    </div>
-    <div class="usercard" id="usercard"></div>
+	<div class="container">
+		<div class="inner">
+			<div class="item">
+				<img src="1.jpg" alt="" class="img">
+				<button class="btn" id="btn1">Урок - 1</button>
+			</div>
+			<div class="item">
+				<img src="2.jpg" alt="" class="img">
+				<button class="btn" id="btn2">Урок - 2</button>
+			</div>
+			<div class="item">
+				<img src="3.jpg" alt="" class="img">
+				<button class="btn" id="btn3">Урок - 3</button>
+			</div>
+			<div class="item">
+				<img src="4.jpg" alt="" class="img">
+				<button class="btn" id="btn4">Урок - 4</button>
+			</div>
+			<div class="item">
+				<img src="5.jpg" alt="" class="img">
+				<button class="btn" id="btn5">Урок - 5</button>
+			</div>
+			<div class="item">
+				<img src="6.jpg" alt="" class="img">
+				<button class="btn" id="btn6">Урок - 6</button>
+			</div>
+			<div class="item">
+				<img src="7.jpg" alt="" class="img">
+				<button class="btn" id="btn6">Урок - 7</button>
+			</div>
+			<div class="item">
+				<img src="8.jpg" alt="" class="img">
+				<button class="btn" id="btn6">Урок - 8</button>
+			</div>
+		</div>
+	</div>
+	<div class="usercard" id="usercard">
+		
+	</div>
 
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script src="app.js"></script>
-    <script>
-        function handleLessonSelect() {
-            var lessonSelect = document.getElementById("lessonSelect");
-            var selectedLesson = lessonSelect.options[lessonSelect.selectedIndex].value;
-            alert('Выбран урок: ' + selectedLesson);
-        }
-    </script>
+	<script src="https://telegram.org/js/telegram-web-app.js"></script>
+	<script src="app.js"></script>
 </body>
 </html>
