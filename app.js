@@ -1,128 +1,57 @@
-let tg = window.Telegram.WebApp;
+// Объявите переменную для хранения текущего урока
+let currentLesson = "";
 
-tg.expand();
+// Функция для обновления контента при выборе урока
+function updateContent(lesson) {
+    if (tg.MainButton.isVisible) {
+        tg.MainButton.hide();
+    } else {
+        tg.MainButton.setText(`Вы выбрали урок ${lesson}!`);
+        currentLesson = lesson;
+        tg.MainButton.show();
+    }
+}
 
-tg.MainButton.textColor = '#FFFFFF';
-tg.MainButton.color = '#2cab37';
-
-let item = "";
-
-let btn1 = document.getElementById("btn1");
-let btn2 = document.getElementById("btn2");
-let btn3 = document.getElementById("btn3");
-let btn4 = document.getElementById("btn4");
-let btn5 = document.getElementById("btn5");
-let btn6 = document.getElementById("btn6");
-let btn7 = document.getElementById("btn7");
-let btn8 = document.getElementById("btn8");
-
-btn1.addEventListener("click", function(){
-	if (tg.MainButton.isVisible) {
-		tg.MainButton.hide();
-	}
-	else {
-		tg.MainButton.setText("Вы выбрали урок 1!");
-		item = "1";
-		tg.MainButton.show();
-	}
+// Добавьте обработчики событий для каждой кнопки
+btn1.addEventListener("click", function() {
+    updateContent("1");
 });
 
-btn2.addEventListener("click", function(){
-	if (tg.MainButton.isVisible) {
-		tg.MainButton.hide();
-	}
-	else {
-		tg.MainButton.setText("Вы выбрали товар 2!");
-		item = "2";
-		tg.MainButton.show();
-	}
+btn2.addEventListener("click", function() {
+    updateContent("2");
 });
 
-btn3.addEventListener("click", function(){
-	if (tg.MainButton.isVisible) {
-		tg.MainButton.hide();
-	}
-	else {
-		tg.MainButton.setText("Вы выбрали товар 3!");
-		item = "3";
-		tg.MainButton.show();
-	}
+btn3.addEventListener("click", function() {
+    updateContent("3");
 });
 
-btn4.addEventListener("click", function(){
-	if (tg.MainButton.isVisible) {
-		tg.MainButton.hide();
-	}
-	else {
-		tg.MainButton.setText("Вы выбрали товар 4!");
-		item = "4";
-		tg.MainButton.show();
-	}
+btn4.addEventListener("click", function() {
+    updateContent("4");
 });
 
-btn5.addEventListener("click", function(){
-	if (tg.MainButton.isVisible) {
-		tg.MainButton.hide();
-	}
-	else {
-		tg.MainButton.setText("Вы выбрали товар 5!");
-		item = "5";
-		tg.MainButton.show();
-	}
+btn5.addEventListener("click", function() {
+    updateContent("5");
 });
 
-btn6.addEventListener("click", function(){
-	if (tg.MainButton.isVisible) {
-		tg.MainButton.hide();
-	}
-	else {
-		tg.MainButton.setText("Вы выбрали товар 6!");
-		item = "6";
-		tg.MainButton.show();
-	}
+btn6.addEventListener("click", function() {
+    updateContent("6");
 });
 
-btn7.addEventListener("click", function(){
-	if (tg.MainButton.isVisible) {
-		tg.MainButton.hide();
-	}
-	else {
-		tg.MainButton.setText("Вы выбрали товар 7!");
-		item = "7";
-		tg.MainButton.show();
-	}
+btn7.addEventListener("click", function() {
+    updateContent("7");
 });
 
-btn8.addEventListener("click", function(){
-	if (tg.MainButton.isVisible) {
-		tg.MainButton.hide();
-	}
-	else {
-		tg.MainButton.setText("Вы выбрали товар 8!");
-		item = "8";
-		tg.MainButton.show();
-	}
+btn8.addEventListener("click", function() {
+    updateContent("8");
 });
 
-Telegram.WebApp.onEvent("mainButtonClicked", function(){
-	tg.sendData(item);
+// Добавьте обработчик события для кнопки "Главный"
+Telegram.WebApp.onEvent("mainButtonClicked", function() {
+    tg.sendData(currentLesson);
 });
 
-
+// Остальной ваш код оставьте без изменений
 let usercard = document.getElementById("usercard");
-
 let p = document.createElement("p");
-
-p.innerText = `${tg.initDataUnsafe.user.first_name}
-${tg.initDataUnsafe.user.last_name}`;
-
+p.innerText = `${tg.initDataUnsafe.user.first_name} ${tg.initDataUnsafe.user.last_name}`;
 usercard.appendChild(p);
-
-
-
-
-
-
-
-
-
