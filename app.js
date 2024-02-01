@@ -31,6 +31,8 @@ backBtn.addEventListener("click", function(){
     // Переключение страниц обратно
     page1.style.display = "block";
     page2.style.display = "none";
+    // Скрываем кнопку "назад"
+    backBtn.style.display = "none";
 });
 
 Telegram.WebApp.onEvent("mainButtonClicked", function(){
