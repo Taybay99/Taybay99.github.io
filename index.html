@@ -27,11 +27,11 @@
         let tg = window.Telegram.WebApp;
 
         tg.expand();
-
         tg.MainButton.textColor = '#FFFFFF';
         tg.MainButton.color = '#2cab37';
 
-        let currentLesson = ""; // Переменная для хранения текущего урока
+        // Добавьте переменную для хранения текущего урока
+        let currentLesson = "";
 
         // Функция для обновления контента при выборе урока
         function updateContent(lesson) {
@@ -46,17 +46,19 @@
 
         // Добавьте обработчики событий для каждой кнопки
         document.getElementById("btn1").addEventListener("click", function() {
-            updateContent("1");
+            // Используйте AJAX для загрузки контента страницы урока
+            fetch('lesson1.html')
+                .then(response => response.text())
+                .then(data => {
+                    // Замените содержимое контейнера приложения на содержимое страницы урока
+                    document.getElementById('app').innerHTML = data;
+                    // Вызовите функцию для обновления контента (необязательно, зависит от вашего дизайна)
+                    updateContent("1");
+                })
+                .catch(error => console.error('Error loading lesson:', error));
         });
 
-        document.getElementById("btn2").addEventListener("click", function() {
-            updateContent("2");
-        });
-
-        // Добавьте обработчик события для кнопки "Главный"
-        Telegram.WebApp.onEvent("mainButtonClicked", function() {
-            tg.sendData(currentLesson); // Отправка данных о текущем уроке на сервер
-        });
+        // Добавьте аналогичные обработчики для других уроков
 
         // Остальной ваш код оставьте без изменений
         let usercard = document.getElementById("usercard");
