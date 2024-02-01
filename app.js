@@ -23,6 +23,7 @@ btn1.addEventListener("click", function(){
 	else {
 		tg.MainButton.setText("Вы выбрали урок 1!");
 		item = "1";
+		window.location.href = 'https://taybay99.github.io/lesson1.html';
 		tg.MainButton.show();
 	}
 });
