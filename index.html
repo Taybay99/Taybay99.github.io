@@ -34,8 +34,18 @@
     <script>
         // Добавляем обработчик события для кнопки "назад"
         document.getElementById("backBtn").addEventListener("click", function () {
-            // Ваш код для возвращения на предыдущую страницу
-            // Например, использование tg.back()
+            // Возвращаемся на предыдущую страницу
+            tg.back();
+        });
+
+        // Добавляем обработчик события для кнопки "Урок - 1"
+        document.getElementById("btn1").addEventListener("click", function () {
+            // Ваш код для перехода на страницу с содержанием урока 1
+            // Например, изменение стилей и отображение нужной страницы
+            document.getElementById("page1").style.display = "none";
+            document.getElementById("page2").style.display = "block";
+            // Показываем кнопку "назад"
+            document.getElementById("backBtn").style.display = "block";
         });
     </script>
 </body>
