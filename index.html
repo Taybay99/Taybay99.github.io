@@ -32,21 +32,24 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="app.js"></script>
     <script>
-        // Добавляем обработчик события для кнопки "назад"
-        document.getElementById("backBtn").addEventListener("click", function () {
-            // Возвращаемся на предыдущую страницу
-            tg.back();
-        });
+    function goBack() {
+        // Ваш код для возврата на предыдущую страницу
+        // Например, изменение стилей и отображение нужной страницы
+        document.getElementById("page1").style.display = "block";
+        document.getElementById("page2").style.display = "none";
+        // Скрываем кнопку "назад"
+        document.getElementById("backBtn").style.display = "none";
+    }
 
-        // Добавляем обработчик события для кнопки "Урок - 1"
-        document.getElementById("btn1").addEventListener("click", function () {
-            // Ваш код для перехода на страницу с содержанием урока 1
-            // Например, изменение стилей и отображение нужной страницы
-            document.getElementById("page1").style.display = "none";
-            document.getElementById("page2").style.display = "block";
-            // Показываем кнопку "назад"
-            document.getElementById("backBtn").style.display = "block";
-        });
+    // Добавляем обработчик события для кнопки "Урок - 1"
+    document.getElementById("btn1").addEventListener("click", function () {
+        // Ваш код для перехода на страницу с содержанием урока 1
+        // Например, изменение стилей и отображение нужной страницы
+        document.getElementById("page1").style.display = "none";
+        document.getElementById("page2").style.display = "block";
+        // Показываем кнопку "назад"
+        document.getElementById("backBtn").style.display = "block";
+    });
     </script>
 </body>
 </html>
