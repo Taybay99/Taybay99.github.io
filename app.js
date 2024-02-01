@@ -1,6 +1,7 @@
 let tg = window.Telegram.WebApp;
 
 tg.expand();
+
 tg.MainButton.textColor = '#FFFFFF';
 tg.MainButton.color = '#2cab37';
 
@@ -19,18 +20,28 @@ function showPage(pageId) {
 
 let btn1 = document.getElementById("btn1");
 let btn2 = document.getElementById("btn2");
-// Добавьте аналогичные переменные для других кнопок
 
 btn1.addEventListener("click", function(){
-    showPage("page1");
-    item = "1";
+    if (tg.MainButton.isVisible) {
+        tg.MainButton.hide();
+    } else {
+        tg.MainButton.setText("Вы выбрали урок 1!");
+        item = "1";
+        showPage("page2"); // Переключаемся на вторую страницу
+        tg.MainButton.show();
+    }
 });
 
 btn2.addEventListener("click", function(){
-    showPage("page2");
-    item = "2";
+    if (tg.MainButton.isVisible) {
+        tg.MainButton.hide();
+    } else {
+        tg.MainButton.setText("Вы выбрали урок 2!");
+        item = "2";
+        showPage("page1"); // Переключаемся на первую страницу
+        tg.MainButton.show();
+    }
 });
-// Добавьте аналогичные обработчики для других кнопок
 
 Telegram.WebApp.onEvent("mainButtonClicked", function(){
     tg.sendData(item);
@@ -39,5 +50,8 @@ Telegram.WebApp.onEvent("mainButtonClicked", function(){
 let usercard = document.getElementById("usercard");
 
 let p = document.createElement("p");
-p.innerText = `${tg.initDataUnsafe.user.first_name} ${tg.initDataUnsafe.user.last_name}`;
+
+p.innerText = `${tg.initDataUnsafe.user.first_name}
+${tg.initDataUnsafe.user.last_name}`;
+
 usercard.appendChild(p);
