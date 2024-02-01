@@ -9,15 +9,15 @@
 <body>
     <div class="container" id="app">
         <div class="inner">
-            <div class="item">
+            <div class="page" id="page1">
                 <img src="1.jpg" alt="" class="img">
-                <button class="btn" id="btn1">Урок - 1</button>
+                <button class="btn" onclick="showPage('page1')">Урок - 1</button>
             </div>
-            <div class="item">
+            <div class="page" id="page2" style="display: none;">
                 <img src="2.jpg" alt="" class="img">
-                <button class="btn" id="btn2">Урок - 2</button>
+                <button class="btn" onclick="showPage('page2')">Урок - 2</button>
             </div>
-            <!-- Добавьте другие уроки здесь -->
+            <!-- Добавьте другие страницы здесь -->
         </div>
     </div>
     <div class="usercard" id="usercard"></div>
@@ -30,35 +30,18 @@
         tg.MainButton.textColor = '#FFFFFF';
         tg.MainButton.color = '#2cab37';
 
-        // Добавьте переменную для хранения текущего урока
-        let currentLesson = "";
+        // Функция для отображения выбранной страницы
+        function showPage(pageId) {
+            // Скрываем все страницы
+            document.querySelectorAll('.page').forEach(page => {
+                page.style.display = 'none';
+            });
 
-        // Функция для обновления контента при выборе урока
-        function updateContent(lesson) {
-            if (tg.MainButton.isVisible) {
-                tg.MainButton.hide();
-            } else {
-                tg.MainButton.setText(`Вы выбрали урок ${lesson}!`);
-                currentLesson = lesson;
-                tg.MainButton.show();
-            }
+            // Отображаем выбранную страницу
+            document.getElementById(pageId).style.display = 'block';
+
+            // Можете также добавить дополнительные логику или изменения в зависимости от выбранной страницы
         }
-
-        // Добавьте обработчики событий для каждой кнопки
-        document.getElementById("btn1").addEventListener("click", function() {
-            // Используйте AJAX для загрузки контента страницы урока
-            fetch('lesson1.html')
-                .then(response => response.text())
-                .then(data => {
-                    // Замените содержимое контейнера приложения на содержимое страницы урока
-                    document.getElementById('app').innerHTML = data;
-                    // Вызовите функцию для обновления контента (необязательно, зависит от вашего дизайна)
-                    updateContent("1");
-                })
-                .catch(error => console.error('Error loading lesson:', error));
-        });
-
-        // Добавьте аналогичные обработчики для других уроков
 
         // Остальной ваш код оставьте без изменений
         let usercard = document.getElementById("usercard");
