@@ -7,10 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="usercard">
-        <!-- Элемент для отображения имени пользователя -->
         <div id="username"></div>
-
         <div class="container" id="page1">
             <div class="inner">
                 <div class="item">
@@ -31,9 +28,7 @@
     </div>
 
     <div class="usercard" id="usercard"></div>
-
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script src="app.js"></script>
+    
     <script>
         function goBack() {
             window.history.back();
@@ -50,5 +45,7 @@
             document.getElementById("username").innerText = "Привет, " + user.first_name;
         });
     </script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
