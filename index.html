@@ -8,6 +8,9 @@
 </head>
 <body>
     <div id="usercard">
+        <!-- Элемент для отображения имени пользователя -->
+        <div id="username"></div>
+
         <div class="container" id="page1">
             <div class="inner">
                 <div class="item">
@@ -31,16 +34,21 @@
 
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="app.js"></script>
-   <script>
-    function goBack() {
-        window.history.back();
-    }
+    <script>
+        function goBack() {
+            window.history.back();
+        }
 
-    document.getElementById("btn1").addEventListener("click", function () {
-        document.getElementById("page1").style.display = "none";
-        document.getElementById("page2").style.display = "block";
-        document.getElementById("backBtn").style.display = "block";
-    });
+        document.getElementById("btn1").addEventListener("click", function () {
+            document.getElementById("page1").style.display = "none";
+            document.getElementById("page2").style.display = "block";
+            document.getElementById("backBtn").style.display = "block";
+        });
+
+        // Получение имени пользователя и его отображение
+        TelegramWebApp.getUserProfile().then(function(user) {
+            document.getElementById("username").innerText = "Привет, " + user.first_name;
+        });
     </script>
 </body>
 </html>
