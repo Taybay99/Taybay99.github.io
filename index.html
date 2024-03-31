@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Обучающий курс Python</title>
+    <title>Главная страница</title>
     <style>
         .progress-bar {
             width: 100%;
@@ -13,7 +13,7 @@
             margin-bottom: 20px;
         }
         .progress {
-            width: 0;
+            width: 50%; /* Здесь будет динамически изменяться ширина прогресс бара */
             background-color: #4caf50;
             height: 100%;
         }
@@ -21,106 +21,29 @@
 </head>
 <body>
     <div id="username"></div>
-    <div class="container" id="page1">
-        <div class="inner">
-            <div class="item">
-                <img src="1.jpg" alt="" class="img">
-                <button class="btn" id="btn1">Урок - 1</button>
-            </div>
-        </div>
-    </div>
-        
-    <div class="container" id="page2" style="display: none;">
-        <!-- Страницы обучающего руководства -->
-        <div class="lesson-content" id="lesson1">
-            <h2>Урок 1: Введение в Python</h2>
-            <p>Здесь содержание вашего первого урока по Python.</p>
-            <!-- Добавьте содержание урока -->
-        </div>
-
-        <div class="lesson-content" id="lesson2" style="display: none;">
-            <h2>Урок 2: Условные операторы и циклы</h2>
-            <p>Здесь содержание вашего второго урока по Python.</p>
-            <!-- Добавьте содержание урока -->
-        </div>
-
-        <div class="lesson-content" id="lesson3" style="display: none;">
-            <h2>Урок 3: Функции и модули</h2>
-            <p>Здесь содержание вашего третьего урока по Python.</p>
-            <!-- Добавьте содержание урока -->
-        </div>
-
-        <!-- Прогресс бар -->
+    <div class="container">
+        <h1>Данные пользователя</h1>
+        <p id="user-info">Информация о пользователе</p>
+        <h2>Количество пройденных уроков: <span id="lessons-completed">0</span></h2>
         <div class="progress-bar">
-            <div class="progress" style="width: 0;"></div>
+            <div class="progress"></div>
         </div>
     </div>
 
-    <div class="usercard" id="usercard"></div>
-    
     <script>
-        // Функция для перехода на предыдущую страницу
-        function goBack() {
-            window.history.back();
-        }
-
-        // Получение информации о телеграмм аккаунте пользователя
         document.addEventListener("DOMContentLoaded", function() {
+            // Получение информации о пользователе и количестве пройденных уроков
             TelegramWebApp.getUserProfile().then(function(user) {
                 document.getElementById("username").innerText = "Привет, " + user.first_name;
-                // Отображение информации о пользователе
-                var usercard = document.getElementById("usercard");
-                var p = document.createElement("p");
-                p.innerText = "Имя пользователя: " + user.first_name + " " + user.last_name;
-                usercard.appendChild(p);
+                document.getElementById("user-info").innerText = "Имя пользователя: " + user.first_name + " " + user.last_name;
+                // Здесь можно добавить логику для получения количества пройденных уроков
+                var lessonsCompleted = 0; // Предположим, что пока что нет пройденных уроков
+                document.getElementById("lessons-completed").innerText = lessonsCompleted;
+                // Теперь можно изменить ширину прогресс бара в соответствии с количеством пройденных уроков
+                var progressBarWidth = lessonsCompleted * 10; // Каждый урок увеличивает ширину на 10%
+                document.querySelector(".progress").style.width = progressBarWidth + "%";
             });
         });
-
-        // Переменная для хранения выбранного урока
-        var selectedLesson = "";
-
-        // Обработчики для кнопок перехода к урокам
-        document.getElementById("btn1").addEventListener("click", function () {
-            selectedLesson = "lesson1";
-            showLesson(selectedLesson);
-        });
-
-        document.getElementById("btn2").addEventListener("click", function () {
-            selectedLesson = "lesson2";
-            showLesson(selectedLesson);
-        });
-
-        document.getElementById("btn3").addEventListener("click", function () {
-            selectedLesson = "lesson3";
-            showLesson(selectedLesson);
-        });
-
-        // Обработчик для кнопки "назад"
-        document.getElementById("backBtn").addEventListener("click", function () {
-            // Переключение страниц обратно
-            document.getElementById("page1").style.display = "block";
-            document.getElementById("page2").style.display = "none";
-            // Скрываем кнопку "назад"
-            document.getElementById("backBtn").style.display = "none";
-        });
-
-        // Функция для отображения содержания урока
-        function showLesson(lessonId) {
-            // Скрываем страницу с кнопкой и показываем страницу с уроком
-            document.getElementById("page1").style.display = "none";
-            document.getElementById("page2").style.display = "block";
-            document.getElementById("backBtn").style.display = "block";
-
-            // Скрыть все уроки, кроме указанного
-            var lessons = document.getElementsByClassName("lesson-content");
-            for (var i = 0; i < lessons.length; i++) {
-                lessons[i].style.display = "none";
-            }
-            document.getElementById(lessonId).style.display = "block";
-            
-            // Отправка данных о выбранном уроке в Telegram
-            TelegramWebApp.sendData(lessonId);
-        }
     </script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="app.js"></script>
