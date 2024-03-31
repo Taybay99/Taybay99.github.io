@@ -4,7 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Обучающий курс Python</title>
+    <style>
+        .progress-bar {
+            width: 100%;
+            background-color: #ddd;
+            height: 20px;
+            margin-bottom: 20px;
+        }
+        .progress {
+            width: 0;
+            background-color: #4caf50;
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
     <div id="username"></div>
@@ -18,28 +31,57 @@
     </div>
         
     <div class="container" id="page2" style="display: none;">
-        <!-- Добавьте содержание урока 1 -->
-        <div class="lesson-content">
-            <h2>Урок 1: Заголовок</h2>
-            <p>Здесь содержание вашего первого урока.</p>
+        <!-- Страницы обучающего руководства -->
+        <div class="lesson-content" id="lesson1">
+            <h2>Урок 1: Введение в Python</h2>
+            <p>Здесь содержание вашего первого урока по Python.</p>
+            <!-- Добавьте содержание урока -->
         </div>
-        <!-- Добавьте содержание для остальных уроков -->
+
+        <div class="lesson-content" id="lesson2" style="display: none;">
+            <h2>Урок 2: Условные операторы и циклы</h2>
+            <p>Здесь содержание вашего второго урока по Python.</p>
+            <!-- Добавьте содержание урока -->
+        </div>
+
+        <div class="lesson-content" id="lesson3" style="display: none;">
+            <h2>Урок 3: Функции и модули</h2>
+            <p>Здесь содержание вашего третьего урока по Python.</p>
+            <!-- Добавьте содержание урока -->
+        </div>
+
+        <!-- Прогресс бар -->
+        <div class="progress-bar">
+            <div class="progress" style="width: 0;"></div>
+        </div>
     </div>
 
-    <div class="usercard" id="usercard"></div>
-    
     <script>
+        // Функция для перехода на предыдущую страницу
         function goBack() {
             window.history.back();
         }
 
-        document.getElementById("btn1").addEventListener("click", function () {
+        // Функция для отображения содержания урока
+        function showLesson(lessonId) {
             document.getElementById("page1").style.display = "none";
             document.getElementById("page2").style.display = "block";
             document.getElementById("backBtn").style.display = "block";
-        });
 
-        // Получение имени пользователя и его отображение после загрузки страницы
+            // Скрыть все уроки, кроме указанного
+            var lessons = document.getElementsByClassName("lesson-content");
+            for (var i = 0; i < lessons.length; i++) {
+                lessons[i].style.display = "none";
+            }
+            document.getElementById(lessonId).style.display = "block";
+
+            // Увеличить ширину прогресс бара в зависимости от пройденных уроков
+            var lessonNumber = parseInt(lessonId.substring(6)); // Получить номер урока из его id
+            var progressBarWidth = (lessonNumber - 1) * (100 / lessons.length);
+            document.querySelector(".progress").style.width = progressBarWidth + "%";
+        }
+
+        // Получение информации о телеграмм аккаунте пользователя
         document.addEventListener("DOMContentLoaded", function() {
             TelegramWebApp.getUserProfile().then(function(user) {
                 document.getElementById("username").innerText = "Привет, " + user.first_name;
