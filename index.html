@@ -56,14 +56,57 @@
         </div>
     </div>
 
+    <div class="usercard" id="usercard"></div>
+    
     <script>
         // Функция для перехода на предыдущую страницу
         function goBack() {
             window.history.back();
         }
 
+        // Получение информации о телеграмм аккаунте пользователя
+        document.addEventListener("DOMContentLoaded", function() {
+            TelegramWebApp.getUserProfile().then(function(user) {
+                document.getElementById("username").innerText = "Привет, " + user.first_name;
+                // Отображение информации о пользователе
+                var usercard = document.getElementById("usercard");
+                var p = document.createElement("p");
+                p.innerText = "Имя пользователя: " + user.first_name + " " + user.last_name;
+                usercard.appendChild(p);
+            });
+        });
+
+        // Переменная для хранения выбранного урока
+        var selectedLesson = "";
+
+        // Обработчики для кнопок перехода к урокам
+        document.getElementById("btn1").addEventListener("click", function () {
+            selectedLesson = "lesson1";
+            showLesson(selectedLesson);
+        });
+
+        document.getElementById("btn2").addEventListener("click", function () {
+            selectedLesson = "lesson2";
+            showLesson(selectedLesson);
+        });
+
+        document.getElementById("btn3").addEventListener("click", function () {
+            selectedLesson = "lesson3";
+            showLesson(selectedLesson);
+        });
+
+        // Обработчик для кнопки "назад"
+        document.getElementById("backBtn").addEventListener("click", function () {
+            // Переключение страниц обратно
+            document.getElementById("page1").style.display = "block";
+            document.getElementById("page2").style.display = "none";
+            // Скрываем кнопку "назад"
+            document.getElementById("backBtn").style.display = "none";
+        });
+
         // Функция для отображения содержания урока
         function showLesson(lessonId) {
+            // Скрываем страницу с кнопкой и показываем страницу с уроком
             document.getElementById("page1").style.display = "none";
             document.getElementById("page2").style.display = "block";
             document.getElementById("backBtn").style.display = "block";
@@ -74,19 +117,10 @@
                 lessons[i].style.display = "none";
             }
             document.getElementById(lessonId).style.display = "block";
-
-            // Увеличить ширину прогресс бара в зависимости от пройденных уроков
-            var lessonNumber = parseInt(lessonId.substring(6)); // Получить номер урока из его id
-            var progressBarWidth = (lessonNumber - 1) * (100 / lessons.length);
-            document.querySelector(".progress").style.width = progressBarWidth + "%";
+            
+            // Отправка данных о выбранном уроке в Telegram
+            TelegramWebApp.sendData(lessonId);
         }
-
-        // Получение информации о телеграмм аккаунте пользователя
-        document.addEventListener("DOMContentLoaded", function() {
-            TelegramWebApp.getUserProfile().then(function(user) {
-                document.getElementById("username").innerText = "Привет, " + user.first_name;
-            });
-        });
     </script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="app.js"></script>
