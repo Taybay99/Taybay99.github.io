@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Страница урока</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Информация урока</h1>
+        <p>Здесь содержится информация о текущем уроке.</p>
+        <button id="completeLessonBtn">Завершить урок</button>
+    </div>
+
+    <script>
+        document.getElementById("completeLessonBtn").addEventListener("click", function() {
+            // Здесь вы можете добавить логику для завершения урока
+            // После завершения урока перенаправьте пользователя на страницу с тестом
+            window.location.href = "test.html"; // Замените test.html на вашу страницу с тестом
+        });
+    </script>
+</body>
+</html>
